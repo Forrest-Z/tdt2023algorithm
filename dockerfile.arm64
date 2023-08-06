@@ -1,0 +1,41 @@
+FROM docker.neutdt.cn/tdtalgorithm/arm:v0.9
+
+RUN chroot /cross_compiler qemu-aarch64-static /bin/bash -c "apt-get update"
+RUN chroot /cross_compiler qemu-aarch64-static /bin/bash -c "apt-get install -y tdtenv-libosqp-dev tdtenv-libosqp-eigen-dev"
+
+RUN sed -i "s/\/opt\/tdt/\/cross_compiler\/opt\/tdt/g" `grep -rl "/opt/tdt" -I /cross_compiler/opt/tdt/`
+RUN sed -i "s/\/opt\/tdt/\/cross_compiler\/opt\/ros/g" `grep -rl "/opt/ros" -I /cross_compiler/opt/`
+RUN sed -i "s/\/usr\/lib/\/cross_compiler\/usr\/lib/g" `grep -rl "/usr/lib" -I /cross_compiler/opt/`
+
+# RUN find /cross_compiler/opt/tdt/ -type f -exec sh -c 'file -b --mime-type "$0" | grep -q "^text/" && sed -i "s/\/opt\/tdt/\/cross_compiler\/opt\/tdt/g" "$0"' {} \;
+# RUN find /cross_compiler/opt/ros/ -type f -exec sh -c 'file -b --mime-type "$0" | grep -q "^text/" && sed -i "s/\/opt\/ros\/humble/\/cross_compiler\/opt\/ros\/humble/g" "$0"' {} \;
+# RUN find /cross_compiler/opt/ -type f -exec sh -c 'file -b --mime-type "$0" | grep -q "^text/" && sed -i "s/\/usr\/lib/\/cross_compiler\/usr\/lib/g" "$0"' {} \;
+
+COPY utils/toolchain.cmake /cross_compiler/toolchain.cmake
+# RUN rm -rf /tdt2023algorithm
+COPY src /tdt2023algorithm/src
+COPY model/* /tdt2023algorithm/model/
+COPY config/* /tdt2023algorithm/config/
+WORKDIR /tdt2023algorithm/
+RUN ln -s /cross_compiler/usr/lib/aarch64-linux-gnu/libblas.so.3 ./libblas.so.3
+RUN ln -s /cross_compiler/usr/lib/aarch64-linux-gnu/liblapack.so.3 ./liblapack.so.3
+RUN rm -rf /tdt2023algorithm/src/roborts_localization /tdt2023algorithm/src/robots_perception /tdt2023algorithm/src/roborts_vision /tdt2023algorithm/src/roborts_camera /tdt2023algorithm/src/usb_cam
+RUN /bin/bash -c \
+    'export LD_LIBRARY_PATH=/cross_compiler/lib:/cross_compiler/usr/lib:/cross_compiler/usr/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH && \
+    source /cross_compiler/opt/ros/humble/setup.bash && \
+    source /cross_compiler/opt/tdt/setupvars.sh && \
+    colcon build --cmake-args -DCMAKE_TOOLCHAIN_FILE=/cross_compiler/toolchain.cmake'
+
+
+
+# RUN colcon build --cmake-args -DCMAKE_TOOLCHAIN_FILE=/cross_compiler/toolchain.cmake
+# RUN /bin/bash -c \
+#     'export C_INCLUDE_PATH=/cross_compiler/usr/include:$C_INCLUDE_PATH && \
+#     export CPLUS_INCLUDE_PATH=/cross_compiler/usr/include:$CPLUS_INCLUDE_PATH && \
+#     export LD_LIBRARY_PATH=/cross_compiler/usr/lib:$LD_LIBRARY_PATH && \
+#     source /cross_compiler/opt/ros/humble/setup.bash && \
+#     colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release \
+#     -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabi-gcc \
+#     -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabi-g++ \
+#     -DCMAKE_SYSTEM_NAME=Linux \
+#     -DCMAKE_SYSTEM_PROCESSOR=arm \'

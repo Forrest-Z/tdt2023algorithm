@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>front_end</name>
+  <version>0.0.0</version>
+
+  <description>
+    This is a modified version of LOAM which is original algorithm
+    is described in the following paper:
+    J. Zhang and S. Singh. LOAM: Lidar Odometry and Mapping in Real-time.
+      Robotics: Science and Systems Conference (RSS). Berkeley, CA, July 2014.
+  </description>
+
+  <maintainer email="xun_001@outlook.com">tdt</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2_sensor_msgs</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>pcl_msgs</depend>
+  <depend>pcl_ros</depend>
+  <depend>visualization_msgs</depend>
+  <depend>livox_ros_driver2</depend>
+  <depend>std_srvs</depend>
+  <depend>localization_toolkit</depend>
+  <depend>localization_interface</depend>
+
+  
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+
+</package>

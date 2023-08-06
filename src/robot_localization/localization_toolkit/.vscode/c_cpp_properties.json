@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/robot_pre_slam/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/robot_localization/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/front_end/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/fast_lio_slam/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/localization_interfaces/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/livox_ros_driver2/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/genshin_simulation/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/genshin_simulation/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/robot_localization/fast_lio_slam/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/robot_localization/localization_interfaces/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/robot_localization/front_end/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/robot_localization/robot_localization/include/**",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/src/robot_localization/robot_pre_slam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

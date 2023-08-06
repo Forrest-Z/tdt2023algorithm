@@ -1,0 +1,6 @@
+uint8 request_param
+---
+# uint8 done
+
+base_interface/Param[] params_dynamic
+base_interface/Param[] params_static

@@ -1,0 +1,12 @@
+{
+    "AheadParams": {
+        "server_port": 6768,
+        "client_port": 6769
+    },
+    "transmission": [
+        {
+            "topic": "navigation2usart",
+            "target_ip": "192.168.1.45"
+        }
+    ]
+}

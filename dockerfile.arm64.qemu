@@ -1,0 +1,26 @@
+FROM arm64v8/ubuntu:22.04
+RUN echo deb http://mirrors.ustc.edu.cn/ubuntu-ports/ jammy main restricted universe multiverse > /etc/apt/sources.list && \
+    echo deb http://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-updates main restricted universe multiverse >> /etc/apt/sources.list && \
+    echo deb http://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-backports main restricted universe multiverse >> /etc/apt/sources.list && \
+    echo deb http://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-security main restricted universe multiverse >> /etc/apt/sources.list
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+
+RUN apt-get update && \
+    apt-get upgrade
+RUN apt-get install -y curl
+RUN curl -sSL https://packages.neutdt.cn/ros/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://mirrors.tuna.tsinghua.edu.cn/ros2/ubuntu jammy main" > /etc/apt/sources.list.d/ros2.list 
+RUN curl -sSL https://packages.neutdt.cn/ubuntu/tdtvision.gpg  -o /usr/share/keyrings/tdt-vision-package.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/tdt-vision-package.gpg] https://packages.neutdt.cn/ubuntu jammy main" > /etc/apt/sources.list.d/tdtvision.list 
+RUN apt-get update
+
+RUN apt-get install -y ros-humble-desktop-full 
+RUN apt-get install -y python3-colcon-common-extensions libeigen3-dev libasio-dev libgoogle-glog-dev libpcl-dev:arm64 ros-humble-sophus ros-humble-eigen3-cmake-module ros-humble-velodyne ros-humble-marti-nav-msgs libceres-dev ros-humble-libg2o ros-humble-sophus libpcg-cpp-dev
+RUN apt-get install -y tdtenv-libosqp-dev tdtenv-libosqp-eigen-dev
+
+COPY src /tdt2023algorithm/src
+COPY model/* /tdt2023algorithm/model/
+COPY config/* /tdt2023algorithm/config/
+RUN rm -rf /tdt2023algorith/src/roborts_vision
+RUN bash -c "source /opt/ros/humble/setup.bash && source /opt/tdt/setupvars.sh && cd /tdt2023algorithm/ && colcon build"

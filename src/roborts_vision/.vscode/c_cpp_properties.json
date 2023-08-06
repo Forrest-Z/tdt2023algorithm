@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/roborts_center_usart/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/node_detect/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/roborts_camera/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/node_resolve/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/node_predict/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/roborts_utils/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/install/vision_interface/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_center_usart/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_utils/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_vision/node_debug/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_vision/node_detect/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_vision/node_predict/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_vision/node_resolve/include/**",
+        "/home/zll-yyds/mycodes/tdt2023algorithm/src/roborts_vision/roborts_camera/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

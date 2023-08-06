@@ -1,0 +1,31 @@
+odom_end_send_tf: false    #参数默认false，决定odom_end是否广播tf
+matching_end_send_tf: false #参数默认false，决定matching_end是否广播tf
+optimizing_end_send_tf: false #参数默认false，决定optimizing_end是否广播tf
+
+######## topic or frame part######## 配置传感器话题输入部分
+lidar_type: 1
+global_frame_id: map     ##不要有斜杠
+imu: /livox/imu
+imu_synced: /synced_imu
+lidar_pointcloud: /livox/lidar  #未去畸变原始点云
+undistorted_pointcloud: /livox/lidar_pro #设定完成去畸变点云的发布话题
+imu_link: laser_link
+lidar_link: laser_link
+car_base_link: laser_link                     #仿真车体连结点
+init_position: [0.0,0.00,0.00]
+
+
+base_frame_id:  map                   ##不要有斜杠
+########input_topic_part########
+
+
+
+registration_method: NDT_CPU # 里程计选择点云匹配方法 目前支持 ICP_SVD , ICP , NDT , NDT_CPU , SICP , NDT_CUDA
+# b. 全局地图点云pcd文件路径:
+map_path:     /../pcd_maps/slam_scans_test1_8g.pcd   # 使用时：WORK_PACKAGE_PATH + map_path
+bin_map_path: /../pcd_maps/global_map_001.bin
+
+# 几个参数用于比较数据预处理部分的效果，只有数据预处理端调用
+dedistortion_work: false   # 去自运动畸变使能
+imu_sync_work:     true    # imu线性插值同步使能
+filter_self_work:  true    # 去除机身自身点使能

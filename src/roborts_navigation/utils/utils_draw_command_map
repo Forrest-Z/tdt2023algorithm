@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+import cv2
+import numpy as np
+from sys import argv
+import os
+import json5
+import math
+
+path = os.path.split(os.path.realpath(__file__))[0]
+if path.endswith("lib/roborts_navigation"):
+    path = os.path.join(path, "../../share/roborts_navigation/launch")
+# 获取所有可用配置文件:
+map_info_path = os.path.join(path, "../command_map/info")
+map_infos = os.listdir(map_info_path)
+available_map_infos = []
+print('请选择使用的矢量地图配置文件:')
+for i in range(len(map_infos)):
+    map_info = map_infos[i]
+    if map_info.endswith(".json") or map_info.endswith(".jsonc"):
+        available_map_infos.append(map_info)
+        print("{}. {}".format(len(available_map_infos) - 1, map_info))
+
+input_id = int(input("请输入编号:"))
+
+if input_id >= len(available_map_infos) or input_id < 0:
+    print("输入编号错误")
+    exit(1)
+
+map_config = ''
+with open(os.path.join(map_info_path, available_map_infos[input_id]), 'r') as f:
+    if not f.readable():
+        print("配置文件不可读")
+        exit(1)
+    map_config = json5.load(f)
+
+w = map_config['width'] + 1
+h = map_config['height'] + 1
+# w = w + 4 - w % 4
+# h = h + 4 - h % 4
+save_path = os.path.join(path, "../command_map/img/")
+save_path = os.path.join(
+    save_path, available_map_infos[input_id].split(".")[0] + ".png")
+
+pixel_per_dis = map_config['dis_per_pixel']
+
+w = int(w / pixel_per_dis)
+h = int(h / pixel_per_dis)
+
+img = np.array([[0 for i in range(w)]
+               for j in range(h)], dtype=np.uint8)
+
+for area in map_config['area']:
+    id = area['id']
+    color = id * 10
+    print(area)
+    if area['type'] == 'rectangle':
+        cv2.rectangle(img, (math.floor(area['x'] / pixel_per_dis), math.floor(area['y'] / pixel_per_dis)),
+                      (math.ceil((area['x'] + area['width']) / pixel_per_dis),
+                       math.ceil((area['y'] + area['height']) / pixel_per_dis)), color, -1)
+
+    if area['type'] == 'triangle':
+        array = np.array([[math.floor(area['x1'] / pixel_per_dis), math.floor(area['y1'] / pixel_per_dis)],
+                          [math.floor(area['x2'] / pixel_per_dis),
+                           math.floor(area['y2'] / pixel_per_dis)],
+                          [math.floor(area['x3'] / pixel_per_dis), math.floor(area['y3'] / pixel_per_dis)]])
+        cv2.fillPoly(img, [array], color)
+        cv2.polylines(img, [array], True, color, 0)
+
+    if area['type'] == 'quadrilateral':
+        array = np.array([[math.floor(area['x1'] / pixel_per_dis), math.floor(area['y1'] / pixel_per_dis)],
+                          [math.floor(area['x2'] / pixel_per_dis),
+                           math.floor(area['y2'] / pixel_per_dis)],
+                          [math.floor(area['x3'] / pixel_per_dis),
+                           math.floor(area['y3'] / pixel_per_dis)],
+                          [math.floor(area['x4'] / pixel_per_dis), math.floor(area['y4'] / pixel_per_dis)]])
+        cv2.fillPoly(img, [array], color)
+        cv2.polylines(img, [array], True, color, 0)
+
+    if area['type'] == 'circle':
+        cv2.circle(img, (math.floor(area['x'] / pixel_per_dis), math.floor(
+            area['y'] / pixel_per_dis)), math.floor(area['radius'] / pixel_per_dis), color, -1)
+
+cv2.imshow("result", img)
+cv2.waitKey(0)
+cv2.imwrite(save_path, img)

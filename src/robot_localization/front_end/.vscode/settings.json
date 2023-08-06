@@ -1,0 +1,20 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#1B312E",
+        "titleBar.activeBackground": "#264541",
+        "titleBar.activeForeground": "#F8FBFA"
+    },
+    "python.autoComplete.extraPaths": [
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/localization_interfaces/local/lib/python3.10/dist-packages",
+        "/home/tdt-link/WorkSpace/Github/AI_ROBOT/install/livox_ros_driver2/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
+}

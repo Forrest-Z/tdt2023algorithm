@@ -1,0 +1,6 @@
+uint8 ifsave 0 #默认只应用，不保存参数
+
+base_interface/Param[] params_dynamic
+---
+uint8 feed_back #应用标志位
+

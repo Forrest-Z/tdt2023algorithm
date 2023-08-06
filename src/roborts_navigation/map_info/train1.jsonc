@@ -1,0 +1,70 @@
+{
+    "width": 810, // 地图宽度 单位cm
+    "height": 455, // 地图高度 单位cm
+    "dis_per_pixel": 4, // 每个像素代表的距离 单位cm/pixel
+    "lidar_map_start_x": 2.65, // 激光雷达地图的起始x坐标 单位 m （激光雷达位置） 
+    "lidar_map_start_y": 2.38, // 激光雷达地图的起始y坐标 单位 m （激光雷达位置） 
+    "lidar_map_start_yaw": 90, // 激光雷达地图的起始yaw坐标,逆时针为正
+    "strategic_points": [ // 战略点, 单位pixel
+        [
+            67,
+            60
+        ], // 起点
+        [
+            117,
+            19
+        ], // 敌方补给区前
+        [
+            [
+                148,
+                16
+            ],
+            [
+                122,
+                75
+            ]
+        ], // 敌方半场巡逻
+        [
+            15,
+            98
+        ] // 己方补给区
+    ],
+    "initial_manual_id": 2, // 启动时默认的手动目标点id， 0为默认无手动目标点
+    "obstacle": [
+        {
+            "type": "rectangle", // 障碍物类型 矩形
+            "x": 560, // 障碍物左上角x坐标 单位cm
+            "y": 335, // 障碍物左上角y坐标 单位cm
+            "width": 60, // 障碍物宽度 单位cm
+            "height": 120 // 障碍物高度 单位cm
+        },
+        {
+            "type": "rectangle",
+            "x": 710,
+            "y": 235,
+            "width": 100,
+            "height": 20
+        },
+        {
+            "type": "rectangle",
+            "x": 370,
+            "y": 120,
+            "width": 40,
+            "height": 205
+        },
+        {
+            "type": "rectangle",
+            "x": 710,
+            "y": 355,
+            "width": 50,
+            "height": 50
+        },
+        {
+            "type": "rectangle",
+            "x": 710,
+            "y": 0,
+            "width": 100,
+            "height": 100
+        }
+    ]
+}

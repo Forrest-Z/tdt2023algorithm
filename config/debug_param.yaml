@@ -1,0 +1,15 @@
+
+parameter_dynamic:
+        -   group_name: Armor_Detector
+            item:
+                -   item_name: "ArmorDetect_lightbarthre" #项目名称
+                    item_type: "int"    #变量类型
+                    item_reference: 4 #参考值
+                    item_min: 0     #最小值
+                    item_max: 5     #最大值
+
+parameter_static:
+        -   group_name: Armor_Detector
+            item:
+                -   item_name: "ArmorDetect_lightbarthre" #项目名称
+                    item_type: "int"    #变量类型

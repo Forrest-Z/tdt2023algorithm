@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>tdt_sentry</name>
+  <version>0.0.1</version>
+  <description>Launch all nodes that sentry needs.</description>
+  <maintainer email="vision@neutdt.cn">root</maintainer>
+  <license>Close Source</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- <depend>robot_localization</depend> -->
+  <depend>roborts_navigation</depend>
+  <depend>robots_perception</depend>
+  <depend>usb_cam</depend>
+  <depend>roborts_center_usart</depend>
+  <!-- <depend>roborts_vision</depend> -->
+
+  
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>

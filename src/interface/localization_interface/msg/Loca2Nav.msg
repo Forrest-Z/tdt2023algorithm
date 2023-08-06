@@ -1,0 +1,4 @@
+std_msgs/Header header
+geometry_msgs/Pose localization
+geometry_msgs/Vector3  linear_velocity
+geometry_msgs/Vector3  linear_acceleration

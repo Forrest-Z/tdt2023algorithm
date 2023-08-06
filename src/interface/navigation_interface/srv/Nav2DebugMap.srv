@@ -1,0 +1,9 @@
+string client_mac_address
+string client_ip_address
+uint8 require_map
+
+---
+
+std_msgs/Header header
+sensor_msgs/Image image
+uint64 map_hash

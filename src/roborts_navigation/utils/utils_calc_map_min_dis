@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+import cv2
+import numpy as np
+from sys import argv
+from queue import Queue
+from tqdm import tqdm
+import math
+import multiprocessing
+import os
+
+expand_size = 4
+
+
+def bfs(map, start):
+    q = Queue()
+    q.put((start, 0))
+    vis = np.zeros(map.shape, dtype=np.uint8)
+    while not q.empty():
+        cnt, step = q.get()
+        if map[cnt[0], cnt[1]] == 0:
+            return math.sqrt((cnt[0]-start[0])*(cnt[0]-start[0])+(cnt[1]-start[1])*(cnt[1]-start[1]))
+        for i in [-1, 0, 1]:
+            for j in [-1, 0, 1]:
+                if i == 0 and j == 0:
+                    continue
+                new_dis = math.sqrt(
+                    (cnt[0]+i-start[0])*(cnt[0]+i-start[0])+(cnt[1]+j-start[1])*(cnt[1]+j-start[1]))
+                if cnt[0]+i < 0 or cnt[0]+i >= map.shape[0] or cnt[1]+j < 0 or cnt[1]+j >= map.shape[1]:
+                    return new_dis
+                if not vis[cnt[0]+i, cnt[1]+j]:
+                    vis[cnt[0]+i, cnt[1]+j] = 1
+                    q.put(((cnt[0]+i, cnt[1]+j), new_dis))
+    return 0x7fffffff
+
+
+path = os.path.split(os.path.realpath(__file__))[0]
+if path.endswith("lib/roborts_navigation"):
+    path = os.path.join(path, "../../share/roborts_navigation/launch")
+print("请选择需要计算障碍物距离的地图:")
+showmap_path = os.path.join(path, "../show_map/")
+showmaps = os.listdir(showmap_path)
+available_showmaps = []
+for showmap in showmaps:
+    if showmap.endswith(".png"):
+        available_showmaps.append(showmap)
+        print("{}. {}".format(len(available_showmaps) - 1, showmap))
+
+input_id = int(input("请输入编号:"))
+
+if input_id >= len(available_showmaps) or input_id < 0:
+    print("输入编号错误")
+    exit(1)
+
+map = cv2.imread(os.path.join(
+    showmap_path, available_showmaps[input_id]), cv2.IMREAD_GRAYSCALE)  # 读取地图
+if map is None:
+    print("地图读取失败")
+    exit(1)
+
+output = np.ndarray(map.shape, dtype=np.uint8)  # 创建输出图像
+save_path = os.path.join(path, "../cost_map/min_dis_map")
+save_path = os.path.join(save_path, available_showmaps[input_id])
+
+
+def work(pos):
+    pos = (pos[0], pos[1])
+    if map[pos] == 0:
+        return 0
+    else:
+        ans = bfs(map, pos)
+        if ans <= expand_size:
+            ans = 0
+        else:
+            ans = ans - expand_size
+        return ans
+
+
+if __name__ == '__main__':
+    pool = multiprocessing.Pool(18)
+    data_size = map.shape[0] * map.shape[1]
+    pbar = tqdm(total=data_size)
+    all_task_list = [[pool.apply_async(work, args=([i, j],), callback=lambda _: pbar.update(
+        1)) for j in range(map.shape[1])] for i in range(map.shape[0])]
+    pool.close()
+    pool.join()
+    output = np.array([[all_task_list[i][j].get()
+                      for j in range(map.shape[1])] for i in range(map.shape[0])])
+    cv2.imwrite(save_path, output)
+    print(output)

@@ -1,0 +1,75 @@
+{
+   "AheadParams": {
+      "Date": "01-04-20:53:01", //上次保存的参数的日期
+      "VideoPath": "/home/momo/Desktop/video/sentry.avi", //debug模式下的视频路径
+      "armor_exposure": 2000, //装甲板模式曝光 -1为自动
+      "buff_exposure": 500, //大符模式曝光 -1为自动
+      "gain": -1, //增益 -1为自动
+      "gamma": 0.40000000000000002 //gamma值 -1为关闭
+   },
+   "CustomParams": {
+      "balance_blue": -1, //白平衡 -1为自动
+      "balance_green": -1, //白平衡 -1为自动
+      "balance_red": -1, //白平衡 -1为自动
+      "balance_val": -1, //白平衡 -1为自动
+      "black_level": 240, //黑电平 -1为关闭
+      "brightness": -1, //亮度 -1为上次的参数
+      "camera_matrix" : {
+         "cols" : 3,
+         "rows" : 3,
+         "type" : "d",
+         "xdata" : [
+            [ 1795.4680454162669, 0.0, 738.24473687281727 ],
+            [ 0.0, 1797.7777196672589, 586.68940496464745 ],
+            [ 0.0, 0.0, 1.0 ]
+         ]
+      },
+      "contrast" : -1, //对比度 仅在免驱相机下有效 -1为上次的值
+      "dev_index" : 0, //相机设备号索引
+      "dev_path" : "", //相机设备路径
+      "dist_coeffs" : {
+         "cols" : 5,
+         "rows" : 1,
+         "type" : "d",
+         "xdata" : [
+            [
+               -0.069430560693962806,
+               0.070392252974738403,
+               -0.00055694972183320654,
+               -0.0021126473995889401,
+               0.35253249345497073
+            ]
+         ]
+      },
+      "tvec_camera_in_world": {
+         "cols": 1,
+         "rows": 3,
+         "type": "d",
+         "xdata": [
+            [
+               7.585
+            ],
+            [
+              -2.7    
+            ],
+            [
+               20.45
+            ]
+         ]
+      },
+      "fps": 166, //相机最大帧率
+      "get_timeStamp": 1, //在关闭触发取帧后是否继续获得时间戳
+      "guid": "", //相机的guid
+      "height": 1080, //相机图像高度
+      "hue": 128, //色调 -1为关闭
+      "name": "head_cam/", //相机名字
+      "pixel_format": 1, //libjepg:turbo/rgb8: 0       bayer:1(bayer下海康相机不使用ISP功能,部分参数不可调，但取帧帧率远大于rgb8模式)
+      "saturation": -1, //饱和度 -1为关闭
+      "sharpness": -1, //锐度 -1为关闭
+      "trigger": 0, //是否使用触发取帧
+      "type": 1, // 0 免驱 1 海康
+      "width": 1440, //相机图像宽度
+      "reverse_x": 0, //x轴翻转
+      "reverse_y": 0 //y轴翻转
+   }
+}

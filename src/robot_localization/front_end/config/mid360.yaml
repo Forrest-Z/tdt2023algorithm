@@ -1,0 +1,77 @@
+laserMapping:
+    ros__parameters:
+        # pcd_map_matching_en: false          # 是否开启点云图匹配模式,图匹配模式下同样能建图生成pcd；该模型切换应由launch启动文件执行
+        game_side: "west"   # 比赛起始点，红方蓝方
+        matching_pcd_map_path: "slam_pcd_maps/slam_scans_test.pcd"      #路径是相对于包的路径，即 ..../front_end/ +  pcd_map_path
+        use_imu_as_input: false            # 默认false
+        prop_at_freq_of_imu: true          # 默认true
+        check_satu: true                   # 默认true
+        runtime_pos_log_enable: false      # 默认false
+        point_filter_num: 1                # 默认1
+        init_map_size: 10                  # 默认10
+        space_down_sample: false            # 默认true
+        filter_size_surf: 0.05              # 默认 0.5
+        filter_size_map: 0.05               # 默认 0.5
+        cube_side_length: 2000.00          # 点云数据划分为立方体的边长，越小精度越高
+        overlap_score_thr: 0.9988
+        # ImuMount_compensate_degrees: [-0.0162985,0.0227377,0.00]    # roll pitch yaw
+        # ImuMount_compensate_degrees: [0.0861267,-0.00459363,0.00]    # roll pit yaw
+        ImuMount_compensate_degrees: [0.0158536,-0.00159273,0.00]    # roll pit yaw
+        # ImuMount_compensate_degrees: [0.0,0.0,0.00]    # roll pit yaw
+
+
+        common:
+            lid_topic:  "/livox/lidar" 
+            imu_topic:  "/livox/imu" 
+            con_frame: false # true: if you need to combine several LiDAR frames into one
+            con_frame_num: 1 # the number of frames combined
+            cut_frame: false # true: if you need to cut one LiDAR frame into several subframes
+            cut_frame_time_interval: 0.1 # should be integral fraction of 1 / LiDAR frequency
+            time_lag_imu_to_lidar: 0.002023 # Time offset between LiDAR and IMU calibrated by other algorithms, e.g., LI-Init (find in Readme)
+
+        preprocess:
+            lidar_type: 1 
+            scan_line: 4
+            timestamp_unit: 1           # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
+            blind: 2.0 
+
+        mapping:
+            imu_en: true
+            extrinsic_est_en: true # 自动标定，for aggressive motion, set this variable false
+            imu_time_inte: 0.005 # = 1 / frequency of IMU
+            satu_acc: 4.0 # the saturation value of IMU's acceleration. not related to the units
+            satu_gyro: 35.0 # the saturation value of IMU's angular velocity. not related to the units
+            acc_norm: 1.0 # 1.0 for g as unit, 9.81 for m/s^2 as unit of the IMU's acceleration
+            lidar_meas_cov: 0.001 # 0.001; 0.01     # 噪声协方差
+            acc_cov_output: 500.00
+            gyr_cov_output: 1000.00
+            b_acc_cov: 0.0001 
+            b_gyr_cov: 0.0001 
+            imu_meas_acc_cov: 0.1 #0.1 # 0.1
+            imu_meas_omg_cov: 0.1 #0.01 # 0.1
+            gyr_cov_input: 0.01 # for IMU as input model
+            acc_cov_input: 0.1 # for IMU as input model
+            plane_thr: 0.05 # 0.05, the threshold for plane criteria, the smaller, the flatter a plane
+            match_s: 81.0
+            fov_degree: 360.0 
+            det_range: 450.0
+            gravity_align: true # true to align the z axis of world frame with the direction of gravity, and the gravity direction should be specified below
+            gravity_init: [0.0, 0.0, -9.80] # [0.0, 9.810, 0.0] # # preknown gravity in the first IMU body frame, use when imu_en is false or start from a non-stationary state
+            gravity: [0.0, 0.0, -9.80] # [0.0, 9.810, 0.0] # # preknown gravity, use when imu_en is false or start from a non-stationary state
+            extrinsic_T: [ -0.011, -0.0234, 0.044 ]
+            extrinsic_R: [ 1.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0,
+                        0.0, 0.0, 1.0 ]
+
+        odometry: 
+            publish_odometry_without_downsample: true
+
+        publish:
+            path_en: true                 # false: close the path output
+            scan_publish_en: true         # false: close all the point cloud output
+            scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+
+        pcd_save:
+            pcd_save_en: true
+            interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                        # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>roborts_navigation</name>
+  <version>0.0.1</version>
+  <description>The Navigation package made up by Front end which is using for discrete point and the back end which is using for dynamics optimization.</description>
+  <maintainer email="359360997@qq.com">Yastruhank</maintainer>
+  <license>Close Source</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <depend>localization_interface</depend>
+  <depend>navigation_interface</depend>
+  <depend>perception_interface</depend>
+  <depend>roborts_utils</depend>
+
+  <depend>OpenCV</depend>
+  <depend>cv_bridge</depend>
+  <depend>eigen3_cmake_module</depend>
+  <depend>eigen</depend>
+  <!-- <depend>osqp_vendor</depend> -->
+
+  
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>

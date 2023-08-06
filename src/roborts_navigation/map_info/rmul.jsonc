@@ -1,0 +1,102 @@
+{
+    "width": 1200, // 地图宽度 单位cm
+    "height": 800, // 地图高度 单位cm
+    "dis_per_pixel": 4, // 每个像素代表的距离 单位cm/pixel
+    "lidar_map_start_x": 2.882, // 激光雷达地图的起始x坐标 单位 m （激光雷达位置） 
+    "lidar_map_start_y": 4.208, // 激光雷达地图的起始y坐标 单位 m （激光雷达位置） 
+    "lidar_map_start_yaw": 90, // 激光雷达地图的起始yaw坐标,逆时针为正
+    "initial_manual_id": 1, // 启动时默认的手动目标点id， 0为默认无手动目标点
+    "strategic_points": [ // 战略点, 单位pixel
+        [
+            215,
+            122
+        ], // 基地门口
+        [
+            160,
+            170
+        ], // 敌方补给区前
+        [
+            150,
+            100
+        ], // 中心点
+        [
+            233,
+            86
+        ], // 敌方基地门口
+        [
+            7,
+            7
+        ] // 补血点
+    ],
+    "speicific_points": {
+        "supply": [
+            7,
+            7
+        ]
+    },
+    "obstacle": [
+        {
+            "type": "rectangle", // 障碍物类型 矩形
+            "x": 100, // 障碍物左上角x坐标 单位cm
+            "y": 600, // 障碍物左上角y坐标 单位cm
+            "width": 100, // 障碍物宽度 单位cm
+            "height": 100 // 障碍物高度 单位cm
+        }, // 己方基地
+        {
+            "type": "rectangle",
+            "x": 1000,
+            "y": 100,
+            "width": 100,
+            "height": 100
+        }, // 敌方基地
+        {
+            "type": "rectangle",
+            "x": 0,
+            "y": 459.478,
+            "width": 193.3,
+            "height": 46.22
+        }, // 己方基地上方挡板
+        {
+            "type": "rectangle",
+            "x": 1006.7,
+            "y": 295.5,
+            "width": 193.3,
+            "height": 46.22
+        }, // 敌方基地下方挡板
+        {
+            "type": "rectangle",
+            "x": 294.5,
+            "y": 606.7,
+            "width": 46.22,
+            "height": 193.3
+        }, // 己方基地右侧挡板
+        {
+            "type": "rectangle",
+            "x": 859.478,
+            "y": 0,
+            "width": 46.22,
+            "height": 193.3
+        }, // 敌方基地左侧挡板
+        {
+            "type": "rectangle",
+            "x": 429.216,
+            "y": 215.008,
+            "width": 42.434,
+            "height": 295
+        }, // 中场区域左侧挡板
+        {
+            "type": "rectangle",
+            "x": 728.35,
+            "y": 289.92,
+            "width": 42.434,
+            "height": 295
+        }, // 中场区域右侧挡板
+        {
+            "type": "rectangle",
+            "x": 1100,
+            "y": 700,
+            "width": 100,
+            "height": 100
+        } // 敌方补给禁区
+    ]
+}

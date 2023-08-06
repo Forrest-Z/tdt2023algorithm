@@ -1,0 +1,106 @@
+{
+   "AheadParams": {
+      //需要放在文件开头醒目位置的参数
+      "BuffDeepLearningModePath": "./model/buff/oldbuff_2023.2.23_lite_t.xml",
+      "Date": "01-04-20:53:01", //上次保存的参数的日期
+      "DeepLearningModePath": "./model/armor/best417.onnx",
+      "DisturbBuffDeepLearningModePath": "./model/buff_dis/buffdisturb20220723.xml",
+      "NumberDetectPath": "./model/number/number.onnx",
+      // "YoloNumberDetectPath": "./model/number/test.onnx",
+      "YoloNumberDetectPath": "./model/number/best.onnx",
+      // "YoloNumberDetectPath": "./model/number/4.21-best4.onnx",
+      "EnemyColor": 0, //敌方颜色 使用的是BGR方式，0为蓝色 2为红色
+      "ifReadColorFromUsart": 1, //是否从串口读取颜色
+      "UsartPath": "/dev/ttyUSB0",
+      "GpuMode": 1, //是否使用GPU进行深度学习识别
+      "DeepLearningMode": 1, //装甲板是否使用深度学习识别
+      "if_predict": 1, //是否打开预测
+      "record_imu_deviation": 0, //是否记录imu偏差
+      "gen_engine": false,
+      "yolo_engine_name": "./model/armor/best0.23width510.trt",
+      "yolo_onnx_name": "./model/armor/best0.23width510.onnx",
+      "number_engine_name": "./model/number/best.trt",
+      "number_onnx_name": "./model/number/best.onnx"
+   },
+   "CustomParams": {
+      "kNmsThresh": 0.4,
+      "kConfThresh": 0.7,
+      "srcH": 1080,
+      "srcW": 1440,
+      "kBatchSize": 4,
+      "ArmorDetect_lightbarthre": 140, //灯条阈值
+      "Baitian": 1, //传统识别用，白天还是黑夜，白天使用通道相减，夜晚通道分离
+      "Balance_on": 0,
+      "DebugWork": 1,
+      "DeepLearning_cof_thre": 0.7099999999999999,
+      "DeepLearning_nms_area_thre": 0.29999999999999999,
+      "Disturb_pitch_Offset_15": 0.032000000000000001,
+      "Disturb_pitch_Q": 0.10000000000000001,
+      "Disturb_pitch_R": 1.3999999999999999,
+      "Disturb_yaw_Offset_15": 0.01,
+      "Disturb_yaw_Q": 0.10000000000000001,
+      "Disturb_yaw_R": 1.3999999999999999,
+      "BuffDetect_dialesize": 1,
+      "EnergyBuffDetect_dialetimes": 0,
+      "EnergyBuffDetect_erodesize": 1,
+      "EnergyBuffDetect_erodetimes": 0,
+      "EnergyBuffDetect_gray_thre": 213,
+      "EnergyBuffDetect_split_thre": 10,
+      "Follow_Pitch_offset": -0.016, //平移竖直偏置 上减下加
+      "Follow_Yaw_offset": 0.015, //平移水平偏置 左加右减
+      "LobThreshold": 240,
+      "LobThreshold2": 99,
+      "Lock": 0,
+      "Operator_Point_to_R": 0,
+      "Point_to_R": 0,
+      "SrcHeight": 1080,
+      "SrcWidth": 1440,
+      "TowedTimeMin": 200,
+      "bigbuff_deta_g": 2.5, //与大符目标点切向相差2.5开火
+      "bigbuff_deta_r": 1.5, //与大符目标点径向相差1.5开火
+      "bigbuff_interval_30": 6,
+      "calcVelthreshold": 1, //计算速度最小阈值
+      "centerTagthreshold": 0.6, //计算首次进入中心区域装甲板最小阈值
+      "disturb_deta_x": 3,
+      "disturb_deta_y": 3,
+      "disturb_interval": 3,
+      "fire_delay": 0.040000000000000001, //大符 因与电控通讯所消耗时间
+      "idea_distance": 700,
+      "idea_distance_ground": 660,
+      "idea_yaw": 0,
+      "last_beat_interval": 2,
+      "minLinerVel": 100, //进入小陀螺最小线速度
+      "normalInit": 0.65000000000000002,
+      "pitch_k": 0.222,
+      "predict_time": 600, //大符预测所用时间
+      "sentryInit": 0,
+      "sigma_ax": 0.75, //x轴（距离）位置过程噪声Q
+      "sigma_az": 0.75, //z轴（水平）位置过程噪声Q
+      "sigma_dis": 0.01, //x轴（距离）位置观测噪声R           
+      "sigma_yaw": 0.0003, //z轴（水平）位置观测噪声R 
+      "sigma_ax_spin": 1.5, //x轴（距离）位置过程噪声Q
+      "sigma_az_spin": 1.5, //z轴（水平）位置过程噪声Q
+      "sigma_dis_spin": 0.005, //x轴（距离）位置观测噪声R           
+      "sigma_yaw_spin": 0.0001, //z轴（水平）位置观测噪声R 
+      "radiusFilter_Q": 0.5,
+      "radiusFilter_R": 0.1,
+      "fireLength": 6.5, //开火区间
+      "FollowModeJudge": -0.75, //平移模式下tag切换置信度，取值范围-1~1，越大切换越容易，一般小陀螺更大，平衡小陀螺最大
+      "SpinModeJudge": -0.367, //小陀螺模式下tag切换置信度，取值范围-1~1，越大切换越容易，一般小陀螺更大，平衡小陀螺最大
+      "BalanceJudgeOffset": 0.35, //平衡小陀螺tag切换置信度偏置
+      "smallbuff_deta_g": 2.5, //与小符目标点切向相差2.5开火
+      "smallbuff_deta_r": 1.5, //与小符目标点径向相差1.5开火
+      "smallbuff_interval_30": 6, //小符速度为30时的开火间隔
+      "spinBeatMinAngle": 25, //小陀螺开火区间角度
+      "spinForBigArmorScale": 1.75, //大装甲板开火区间尺度放大
+      "spinModeByDeepLearning": 1,
+      "spinMoveMinDis": 6, //前后轴心最小移动距离，超过即退出反陀螺
+      "spinPreScale": 0.80000000000000004, //小陀螺预测尺度，越小越预测下快装甲板
+      "thea": 200,
+      "sameArmorScore": -0.5,
+      "continusTime": 0.5,
+      "armorDecisionAttenuationCoefficient": 15, //牛顿冷却系数
+      "ifPredict": 1 ,
+      "init_pitch":0.0
+   }
+}

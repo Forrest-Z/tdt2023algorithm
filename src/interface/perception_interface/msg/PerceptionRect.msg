@@ -1,0 +1,1 @@
+geometry_msgs/Point32[4] position

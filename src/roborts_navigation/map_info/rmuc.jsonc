@@ -1,0 +1,33 @@
+{
+    "width": 2800, // 地图宽度 单位cm
+    "height": 1500, // 地图高度 单位cm
+    "dis_per_pixel": 4, // 每个像素代表的距离 单位cm/pixel
+    "lidar_map_start_x": 6.554, // 激光雷达地图的起始x坐标 单位 m （激光雷达位置） (长边)
+    "lidar_map_start_y": 5.205, // 激光雷达地图的起始y坐标 单位 m （激光雷达位置） (短边)
+    "lidar_map_start_yaw": 90, // 激光雷达地图的起始yaw坐标,逆时针为正
+    "strategic_points": [ // 战略点, 单位pixel
+        [
+            [
+                158,
+                135
+            ],
+            [
+                158,
+                233
+            ]
+        ],
+        [
+            [
+                563,
+                144
+            ],
+            [
+                563,
+                240
+            ]
+        ]
+    ],
+    "initial_manual_id": 0, // 启动时默认的手动目标点id， 0为默认无手动目标点
+    "obstacle": [],
+    "slope": []
+}

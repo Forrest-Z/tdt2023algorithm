@@ -1,0 +1,5 @@
+float32 manual_position_x
+float32 manual_position_y
+int32 target_type
+int32 marked_id
+std_msgs/Header header

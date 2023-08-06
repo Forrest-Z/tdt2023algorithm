@@ -1,0 +1,22 @@
+{
+    "AheadParams": {
+        //需要放在文件开头醒目位置的参数
+        "debug": false,
+        "record": true,
+        "yolo_engine_name": "./model/armor/best0.23width510_batch4.trt",
+        // "yolo_engine_name": "./model/armor/best417_batch4.trt",
+        "yolo_onnx_name": "./model/armor/best417_batch4.onnx",
+        "number_engine_name": "./model/number/best.trt",
+        "number_onnx_name": "./model/number/best.onnx",
+        "ArmorDetect_lightbarthre": 140,
+        "roiFindPoints": 1
+    },
+    "CustomParams": {
+        "gen_engine": false,
+        "srcH": 360,
+        "srcW": 640,
+        "kBatchSize": 4,
+        "kNmsThresh": 0.4,
+        "kConfThresh": 0.7
+    }
+}

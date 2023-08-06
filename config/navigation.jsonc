@@ -1,0 +1,36 @@
+{
+    "AheadParams": {
+        //需要放在文件开头醒目位置的参数
+        "map_name": "rmuc", //地图文件名
+        "command_map_name": "rmuc", //指令地图文件名
+        "kExtraCostAstar": 14, //障碍物在Astar前端搜索时的额外代价
+        "kExtraCostHybridAstar": 0.4, //障碍物在混合Astar前端搜索时的额外代价
+        "max_speed": 150, // 单位 cm/s
+        "max_acc": 300, // 单位cm/s^2
+        "max_speed_in_slope": 300, // 单位 cm/s
+        "max_turn_speed": 4.4, // 转舵速度, 单位rad/s
+        "self_color": 2, // 己方颜色 0->蓝方 2->红方
+        "video_debug_local": false // 是否本地进行图形化调试
+    },
+    "CustomParams": {
+        "direct_backend_toword_filter_rate": 1,
+        "direct_backend_speed_filter_rate": 1,
+        "direct_backend_speed_down_toword_thre": 0.5, // 速度下降时的角度变化量阈值 单位rad/s
+        "direct_backend_speed_down_rate": 0.5, // 因角度变化量过大速度下降时的变化量系数
+        "stepAstar": 5, // A*算法的步长 单位pixel
+        "astarLeadSizeForHybrid": 20, // A*算法结果在混合A*算法中的提前量 单位step
+        "timeTickAstar": 0.1, // 混合A*算法的时间间隔 单位s
+        "resolverRateAstar": 1, // 在A*算法圆弧上每多少个点计算一次
+        "resolverRateHybridAstar": 3, // 在混合A*算法计算可行角度时分为多少块
+        "astarTimeOutTime": 2e5, // 混合A*算法的超时时间 单位us
+        "resolverRatePolyfit": 5,
+        "order": 3, //多项式阶数
+        "self_radius": 32, //自己机器人的轴长 单位cm
+        "enemy_radius": 56, //敌方机器人的轴长 单位cm
+        "perception_info_time_out": 3, // 感知信息超时时间单位s
+        "local_planner_enable": false, // 是否启用局部规划(决策)
+        "local_planner_area": 200, //局部规划(决策)的范围， 单位cm
+        "local_planner_radius": 7, // 是否启用局部规划(决策)
+        "debug_scale_rate": 3 // 本地调试时的缩放比例
+    }
+}

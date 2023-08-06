@@ -1,0 +1,23 @@
+{
+    "width": 2800, // 地图宽度 单位cm
+    "height": 1500, // 地图高度 单位cm
+    "dis_per_pixel": 4, // 每个像素代表的距离 单位cm/pixel
+    "area": [
+        {
+            "type": "rectangle", // 障碍物类型 矩形
+            "id": 1, // 区域id
+            "x": 408, // 障碍物左上角x坐标 单位cm
+            "y": 468, // 障碍物左上角y坐标 单位cm
+            "width": 312, // 障碍物宽度 单位cm
+            "height": 536 // 障碍物高度 单位cm
+        },
+        {
+            "type": "rectangle",
+            "id": 2,
+            "x": 2080,
+            "y": 496,
+            "width": 312,
+            "height": 536
+        }
+    ]
+}
